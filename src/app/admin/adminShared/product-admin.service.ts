@@ -15,7 +15,7 @@ export class ProductAdminService {
                 let newProd = dbRef.push();
                 newProd.set ({
                     name: prod.name,
-                    desc: prod.description,
+                    desc: prod.desc,
                     imgTitle: prod.imgTitle,
                     img: url,
                     price: prod.price,
@@ -31,8 +31,13 @@ export class ProductAdminService {
         let dbRef = firebase.database().ref('products/').child(update.id)
             .update({
                 name: update.name,
-                desc: update.description,
+                desc: update.desc,
                 price: update.price
+            })
+            .then(function() {
+                alert('product updated');
+            }).catch(function(error) {
+                alert(`failed upload: ${error}`);
             });
         alert('product updated');       
     }
